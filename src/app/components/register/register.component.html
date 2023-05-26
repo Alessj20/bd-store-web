@@ -1,0 +1,104 @@
+<div class="container">
+    <form class="login-form">
+        <h1>¿Ya tienes <strong>Cuenta</strong>?</h1>
+        <button mat-flat-button style="background-color: rgb(255, 0, 0); color: white" routerLink="/login">Iniciar
+            Sesión</button>
+        <br />
+        <h1>Registrate en <strong>Mueblería</strong></h1>
+        <mat-icon matSuffix>bed</mat-icon>
+        <h1>Los Alpes</h1>
+        <br />
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Primer Nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.firstName" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Segundo Nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.secondName" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Primer Apellido</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.firstLastName" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Segundo Apellido</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.secondLastName" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>DPI</mat-label>
+                <input matInput type="number" [(ngModel)]="newUser.dpi" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>personal_injury</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>NIT</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.nit" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>account_balance</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Celular</mat-label>
+                <input matInput type="number" minlength="8" maxlength="8" [(ngModel)]="newUser.phone"
+                    [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput type="date" [(ngModel)]="newUser.birthday" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>cake</mat-icon>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>País</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.country" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>flag</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Departamento</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.state" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>home_work</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Municipio</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.city" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>location_city</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Complemento</mat-label>
+                <input matInput type="text" [(ngModel)]="newUser.complement" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>apartment</mat-icon>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Usuario</mat-label>
+                <input matInput type="email" [(ngModel)]="newUser.username" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" [(ngModel)]="newUser.password" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>password</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Repetir Contraseña</mat-label>
+                <input matInput type="password" [(ngModel)]="newUser.confirmPassword"
+                    [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>password</mat-icon>
+            </mat-form-field>
+        </div>
+        <button mat-flat-button style="background-color: rgb(0, 81, 255); color: white"
+            (click)="register()">Registrate</button>
+        <br />
+    </form>
+</div>

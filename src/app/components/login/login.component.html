@@ -1,0 +1,26 @@
+<div class="container">
+  <form class="login-form">
+    <h1>Inicia Sesión en <strong>Mueblería</strong></h1>
+    <mat-icon matSuffix>bed</mat-icon>
+    <h1>Los Alpes</h1>
+    <br />
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input matInput type="email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+      <mat-icon matSuffix>password</mat-icon>
+    </mat-form-field>
+    <button mat-flat-button style="background-color: rgb(0, 81, 255); color: white" (click)="login()">Iniciar
+      sesión</button>
+    <br />
+    <p>¿Aún no tienes <strong>cuenta</strong>?</p>
+    <br />
+    <button mat-flat-button style="background-color: rgb(255, 0, 0); color: white"
+      routerLink="/register">Registrate</button>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="/" class="example-icon">
+    <mat-icon>bed</mat-icon>
+  </button>
+  <span>Los Alpes</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="isLoggedIn" (click)="closeSession()" mat-stroked-button class="example-icon favorite-icon">
+   Cerrar Sesión
+  </button>
+  <button mat-icon-button (click)="navigate('cart')" class="example-icon favorite-icon">
+    <mat-icon matBadge="{{ badgeCount}}" matBadgeColor="warn">shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>

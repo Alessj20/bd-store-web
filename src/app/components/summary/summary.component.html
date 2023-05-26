@@ -1,0 +1,24 @@
+<div *ngIf="isWorking" class="d-flex flex-column align-items-center" style="margin-top: 5rem">
+  <img
+    class="flotar"
+    src="https://static6.depositphotos.com/1150740/642/v/600/depositphotos_6420884-stock-illustration-cartoon-carpenter-in-blue-apron.jpg"
+    alt=""
+    height="450"
+  />
+  <h1 style="margin-top: 2rem; margin-bottom: 2rem;">
+    Espera un momento, ¡Estamos procesando tu pedido!
+  </h1>
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+</div>
+<div *ngIf="!isWorking" class="d-flex flex-column align-items-center" style="margin-top: 5rem">
+  <h1>Todo listo, hemos recibido tu <strong>pedido</strong></h1>
+  <img
+    class="flotar"
+    src="https://images.vexels.com/media/users/3/199964/isolated/preview/ae782cab8ae7e722febb5869c09574cc-feliz-personaje-de-repartidor.png"
+    alt=""
+    height="450"
+  />
+  <h1 style="margin-top: 2rem; margin-bottom: 2rem;">Tu número de orden es <strong>{{pedido}}</strong></h1>
+  <h1>Nuestro personal se estará contactando <strong>contigo</strong> para coordinar la <strong>entrega</strong></h1>
+  <button type="button" routerLink="/" class="btn btn-primary">Ir a Inicio</button>
+</div>

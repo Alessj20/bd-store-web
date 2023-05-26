@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-sm-12 d-flex flex-column">
+        <div>
+            <br />
+            <h1 class="text-center">Carrito de Compras</h1>
+            <br />
+        </div>
+        <div>
+            <p class="text-center"><u>{{products.length}} {{products.length === 1? 'Producto': 'Productos'}}</u></p>
+        </div>
+        <div class="d-flex flex-row" *ngFor="let product of products; index as i">
+            <div class="d-flex flex-row h-100 w-100">
+                <div class="d-flex flex-row h-100 w-75">
+                    
+                    <div class="d-flex flex-column align-items-center justify-content-center h-50">
+                        <img height="200" class="card-img-top w-50"
+                        src="{{product.IMAGEN}}"
+                            alt="Imagen del producto">
+                    </div>
+                    <div class="d-block ml-4">
+                        <h6 class="">{{product.NAME.split(' ')[0]}}</h6>
+                        <h4>{{product.NAME}}</h4>
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <div>
+                        <button mat-icon-button (click)="decrementCart(i)" class="example-icon favorite-icon">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <input matInput [(ngModel)]="product.UNITS">
+                    </div>
+                    <div>
+                        <button mat-icon-button (click)="incrementCart(i)" class="example-icon favorite-icon">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button mat-icon-button (click)="deleteCartItem(i)" class="example-icon favorite-icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="products.length > 0 && isLoggedIn" class="d-flex align-items-center justify-content-center">
+            <button type="button" routerLink="/payment" class="btn btn-primary">Ir al checkout</button>
+        </div>
+        <div *ngIf="products.length === 0" class="d-flex flex-column align-items-center justify-content-center">
+            <h1>Tu carrito está vacío, regresa cuando hayas añadido productos</h1>
+            <button type="button" routerLink="/" class="btn btn-primary">Ir a Inicio</button>
+        </div>
+
+        <div *ngIf="products.length > 0 && !isLoggedIn" class="d-flex flex-column align-items-center justify-content-center">
+            <h1>Para ir al checkout, inicia sesión o crea tu cuenta</h1>
+            <button type="button" routerLink="/login" class="btn btn-primary">Iniciar Sesión</button>
+        </div>
+    </div>
+</div>

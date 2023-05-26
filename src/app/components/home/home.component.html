@@ -1,0 +1,68 @@
+<div class="w-100 p-3">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h1 class="text-black">Bienvenido a Mueblería los Alpes</h1>
+        <br />
+        <button *ngIf="!isLoggedIn" type="button"routerLink="/login" class="btn btn-danger">Inicia Sesión</button>
+        <br />
+        <button type="button" routerLink="/products" class="btn btn-warning">Ver todos los Productos</button>
+    </div>
+</div>
+<br />
+<div class="container">
+    <h1>Productos Exclusivos</h1>
+    <br />
+    <p>Un listado de productos bastante exclusivo.</p>
+    <br />
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let product of products">
+            <div class="card h-100 border border-danger">
+              <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <img class="card-img-top w-50" src="{{product.IMAGEN}}"
+                  alt="Imagen del producto">
+              </div>
+              <div class="card-body d-flex flex-column align-items-center justify-content-center ">
+                <h5 class="card-title">{{product.NAME}}</h5>
+                <p class="card-text">{{product.DESCRIPTION}}</p>
+                <p class="card-text">Existencias: {{product.EXISTENCE}}</p>
+                <p class="card-text">Precio: {{product.PRICE | currency: 'Q.'}}</p>
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar al carrito</button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<br/>
+<br/>
+<div class="container">
+    <h1>Productos Nuevos</h1>
+    <br />
+    <p>Nuestros más recientes ingresos.</p>
+    <br />
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let product of newProducts">
+            <div class="card h-100 border border-danger">
+              <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <img class="card-img-top w-50" src="{{product.IMAGEN}}"
+                  alt="Imagen del producto">
+              </div>
+              <div class="card-body d-flex flex-column align-items-center justify-content-center ">
+                <h5 class="card-title">{{product.NAME}}</h5>
+                <p class="card-text">{{product.DESCRIPTION}}</p>
+                <p class="card-text">Existencias: {{product.EXISTENCE}}</p>
+                <p class="card-text">Precio: {{product.PRICE}}</p>
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar al carrito</button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

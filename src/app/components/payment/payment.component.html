@@ -1,0 +1,156 @@
+<div class="d-flex flex-row">
+    <div class="d-flex col-sm-6 flex-column align-items-center">
+        <br />
+        <h1 class="text-center">Información de Envío</h1>
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Departamento</mat-label>
+                <input matInput type="text" [(ngModel)]="state" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>home_work</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Municipio</mat-label>
+                <input matInput type="text" [(ngModel)]="city" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>location_city</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Complemento</mat-label>
+                <input matInput type="text" [(ngModel)]="complement" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>apartment</mat-icon>
+            </mat-form-field>
+            <div class="d-flex flex-column" style="max-width: 17.5rem;">
+                <label id="example-radio-group-label"><strong>Dirección de Facturación igual a la de
+                        envío?</strong></label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="autocompleteBillingAddress">
+                    <mat-radio-button [value]="true">Si</mat-radio-button>
+                    <mat-radio-button [value]="false">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <br />
+        <h1 class="text-center">Información de Facturación</h1>
+        <br />
+        <div class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>Nombre Fiscal</mat-label>
+                <input matInput type="text" [(ngModel)]="fiscalName" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>apartment</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>NIT</mat-label>
+                <input matInput type="text" [(ngModel)]="nit" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>apartment</mat-icon>
+            </mat-form-field>
+        </div>
+        <div *ngIf="!autocompleteBillingAddress" class="d-flex flex-row">
+            <mat-form-field appearance="outline" style="margin-right: 2rem;">
+                <mat-label>´Dirección Fiscal</mat-label>
+                <input matInput type="text" [(ngModel)]="fiscalAddress" [ngModelOptions]="{standalone: true}">
+                <mat-icon matSuffix>apartment</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="d-flex col-sm-6 flex-column align-items-center">
+        <br />
+        <h1 class="text-center">Información de Pago</h1>
+        <br />
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column align-items-center">
+                <label id="example-radio-group-label"><strong>Elije el método de pago</strong></label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="paymentType">
+                    <mat-radio-button class="example-radio-button" *ngFor="let payment of paymentMethods"
+                        [value]="payment.TPG_TIPO_PAGO">
+                        {{payment.TPG_METODO}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <div *ngIf="paymentType === 1" style="margin-top: 2rem;">
+
+                    <div class="fecha-vencimiento-container">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Número de tarjeta</mat-label>
+                            <input matInput [(ngModel)]="card" (input)="validarTarjeta()"
+                                placeholder="Número de tarjeta">
+                            <mat-icon [ngClass]="{'visa-icon': cardtype === tiposTarjeta.VISA,
+                            'mastercard-icon': cardtype === tiposTarjeta.MASTERCARD,
+                            'unknown-icon': cardtype === tiposTarjeta.DESCONOCIDA}">
+                                <!-- Icono para Visa -->
+                                <img *ngIf="cardtype === tiposTarjeta.VISA"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png"
+                                    height="7" alt="">
+
+                                <!-- Icono para Mastercard -->
+                                <img *ngIf="cardtype === tiposTarjeta.MASTERCARD"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png"
+                                    height="15" alt="">
+
+
+                                <!-- Icono para desconocida -->
+                                <mat-icon *ngIf="cardtype === tiposTarjeta.DESCONOCIDA">help_outline</mat-icon>
+                            </mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>CVV</mat-label>
+                            <input matInput [(ngModel)]="cvv" placeholder="CVV">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="fecha-vencimiento-container">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Mes de vencimiento</mat-label>
+                            <mat-select [(ngModel)]="month" placeholder="Mes">
+                                <mat-option *ngFor="let mes of months" [value]="mes">{{ mes }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Año de vencimiento</mat-label>
+                            <mat-select [(ngModel)]="year" placeholder="Año">
+                                <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div *ngIf="paymentType === 2" class="d-flex flex-column align-items-center" style="margin-top: 2rem;">
+                    <h4>El repartidor cobrará tu pedido al momento de la entrega</h4>
+                    <img src="https://us.123rf.com/450wm/seamartini/seamartini1404/seamartini140400051/27243153-c%C3%B3moda-cama-de-dibujos-animados-con-un-colch%C3%B3n-de-color-naranja-con-una-cara-sonriente-feliz-aislado.jpg"
+                        height="150" alt="logo">
+                </div>
+
+                <div *ngIf="paymentType === 3" class="d-flex flex-column align-items-center" style="margin-top: 2rem;">
+                    <h4><strong>Puedes realizar tu pago a las cuentas:</strong></h4>
+                    <h3>344567-556-6 - Monetaria, Banco G&T Continental, S.A.</h3>
+                    <h3>4545-5445-7 - Ahorros, Banco Industrial, S.A.</h3>
+                    <h4><strong>Te contactaremos para que puedas enviar tu comprobante</strong></h4>
+                </div>
+                <mat-card style="min-width: 20rem; margin-top: 2rem;">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title>Resumen de la Compra</mat-card-title>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-grid-list cols="2" rowHeight="2:1" *ngFor="let product of cart">
+                            <mat-grid-tile class="text-start">X{{product.UNITS}} {{product.NAME}}</mat-grid-tile>
+                            <mat-grid-tile class="text-end">{{(product.PRICE * product. UNITS) | currency:
+                                'Q.'}}</mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-divider></mat-divider>
+                        <mat-grid-list cols="2" rowHeight="2:1">
+                            <mat-grid-tile><strong>Total</strong></mat-grid-tile>
+                            <mat-grid-tile class="text-end">{{total | currency: 'Q.'}}</mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div *ngIf="isLoggedIn && paymentType" class="d-flex flex-row align-items-center" style="margin-top: 2rem;">
+                <button type="button" routerLink="/summary" (click)="setPayment()" class="btn btn-primary">{{paymentType === 1? 'Pagar y Colocar Pedido' : 'Colocar Pedido'}}</button>
+        </div>
+    </div>
+</div>
