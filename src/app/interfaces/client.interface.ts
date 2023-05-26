@@ -5,7 +5,7 @@ export interface Client {
   CLI_CORREO: string;
   CLI_DEPARTAMENTO: string;
   CLI_DIRECCION: string;
-  CLI_FECHA: string;
+  CLI_FECHA_NAC: string;
   CLI_NIT: string;
   CLI_NOTAS: string;
   CLI_NUMERO_CELULAR: number;

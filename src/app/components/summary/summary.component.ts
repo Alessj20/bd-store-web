@@ -116,7 +116,7 @@ export class SummaryComponent {
 
     const body: GeneralIncome = {
       CLI_CLIENTE: client.CLI_CLIENTE,
-      SUC_SUCURSAL: randomNumber,
+      CIU_CIUDAD: randomNumber,
       TPG_TIPO_PAGO: paymentType,
       FAG_TOTAL: total,
     };
