@@ -126,7 +126,7 @@ export class SummaryComponent {
   createDetailIncomeBody(product: ProductInCart, idGeneral: number) {
     const body: DetailIncome = {
       PRO_PRODUCTO: product.ID,
-      FAD_CANTIDAD: product.PRICE,
+      FAD_CANTIDAD: product.UNITS,
       FAD_PRECIO: product.UNITS * product.PRICE,
       FAG_FACTURA_GENERAL: idGeneral,
     };
